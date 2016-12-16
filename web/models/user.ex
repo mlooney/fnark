@@ -6,6 +6,7 @@ defmodule Fnark.User do
     field :crypted_password, :string
     field :realname, :string
     field :username, :string
+    has_many :links, Fnark.Link
 
     timestamps()
   end

@@ -18,6 +18,11 @@ defmodule Fnark.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", Fnark do
+    pipe_through :api
+    resources "/links", LinkController, only: [:index]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Fnark do
   #   pipe_through :api
