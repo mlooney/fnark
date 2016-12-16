@@ -1,4 +1,4 @@
-module App exposing (..)
+module Fnark exposing (..)
 
 import Json.Decode as Decode exposing (Decoder, field, succeed, at)
 import Html exposing (..)
