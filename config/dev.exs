@@ -41,3 +41,12 @@ config :fnark, Fnark.Repo,
   database: "fnark_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :guardian, Guardian,
+  verify_module: Guardian.JWT,
+  issuer: "Fnark",
+  ttl: {365, :days},
+  verify_issuer: true,
+  secret_key: "d+WQzyF/XDUQ8YWfYGGueDwtxHMPtM6FJgo3LY9BWGT2yWQAzdQ4+iEM9acQ5Vtw",
+  serializer: Fnark.GuardianSerializer
+

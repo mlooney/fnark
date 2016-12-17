@@ -11,6 +11,8 @@ defmodule Fnark.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/", Fnark do
@@ -21,6 +23,8 @@ defmodule Fnark.Router do
   scope "/api", Fnark do
     pipe_through :api
     resources "/links", LinkController, only: [:index]
+    resources "/users", UserController, only: [:get]
+    post "/session", SessionController,  :create
   end
 
   # Other scopes may use custom stacks.
