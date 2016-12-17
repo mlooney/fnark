@@ -8922,7 +8922,7 @@ var _user$project$App$viewLink = function (link) {
 		_elm_lang$html$Html$li,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('link'),
+			_0: _elm_lang$html$Html_Attributes$class('dinkle'),
 			_1: {ctor: '[]'}
 		},
 		{
@@ -8934,7 +8934,7 @@ var _user$project$App$viewLink = function (link) {
 					_0: _elm_lang$html$Html_Attributes$href(link.url),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$target('_blank'),
+						_0: _elm_lang$html$Html_Attributes$target('_shank'),
 						_1: {ctor: '[]'}
 					}
 				},
@@ -8971,12 +8971,54 @@ var _user$project$App$viewAlert = function (a) {
 			});
 	}
 };
+var _user$project$App$loggedInBox = function (user) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('box'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$p,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						A2(_elm_lang$core$Basics_ops['++'], 'logged in as ', user.realname)),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$App$loginBox = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('box'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html$text('you should login'),
+		_1: {ctor: '[]'}
+	});
+var _user$project$App$viewLoginBox = function (model) {
+	var _p1 = model.user;
+	if (_p1.ctor === 'Nothing') {
+		return _user$project$App$loginBox;
+	} else {
+		return _user$project$App$loggedInBox(_p1._0);
+	}
+};
 var _user$project$App$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$id('main'),
+			_0: _elm_lang$html$Html_Attributes$id('maid'),
 			_1: {ctor: '[]'}
 		},
 		{
@@ -8985,20 +9027,24 @@ var _user$project$App$view = function (model) {
 			_1: {
 				ctor: '::',
 				_0: _user$project$App$viewLinks(model.links),
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: _user$project$App$viewLoginBox(model),
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 };
 var _user$project$App$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
-		if (_p1.ctor === 'NewLinks') {
-			if (_p1._0.ctor === 'Ok') {
+		var _p2 = msg;
+		if (_p2.ctor === 'NewLinks') {
+			if (_p2._0.ctor === 'Ok') {
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{links: _p1._0._0, alert: _elm_lang$core$Maybe$Nothing}),
+						{links: _p2._0._0, alert: _elm_lang$core$Maybe$Nothing}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			} else {
@@ -9008,7 +9054,7 @@ var _user$project$App$update = F2(
 						model,
 						{
 							alert: _elm_lang$core$Maybe$Just(
-								_elm_lang$core$Basics$toString(_p1._0._0))
+								_elm_lang$core$Basics$toString(_p2._0._0))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};

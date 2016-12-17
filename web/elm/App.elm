@@ -1,4 +1,4 @@
-module Fnark exposing (..)
+module App exposing (..)
 
 import Json.Decode as Decode exposing (Decoder, field, succeed, at)
 import Html exposing (..)
@@ -55,10 +55,35 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [ id "main" ]
+    div [ id "maid" ]
         [ viewAlert model.alert
         , viewLinks model.links
+        , viewLoginBox model
         ]
+
+
+loginBox : Html Msg
+loginBox =
+    div [ class "box" ]
+        [ text "you should login"
+        ]
+
+
+loggedInBox : User -> Html Msg
+loggedInBox user =
+    div [ class "box" ]
+        [ p [] [ text ("logged in as " ++ user.realname) ]
+        ]
+
+
+viewLoginBox : Model -> Html Msg
+viewLoginBox model =
+    case model.user of
+        Nothing ->
+            loginBox
+
+        Just u ->
+            loggedInBox u
 
 
 
@@ -77,8 +102,8 @@ viewAlert a =
 
 viewLink : Link -> Html Msg
 viewLink link =
-    li [ class "link" ]
-        [ a [ href link.url, target "_blank" ] [ text link.blurb ]
+    li [ class "dinkle" ]
+        [ a [ href link.url, target "_shank" ] [ text link.blurb ]
         ]
 
 
