@@ -8553,6 +8553,121 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
+var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
+var _elm_lang$html$Html_Events$targetChecked = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'checked',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$bool);
+var _elm_lang$html$Html_Events$targetValue = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'value',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
+var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
+var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$html$Html_Events$onFocus = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focus',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onBlur = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'blur',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
+	_elm_lang$html$Html_Events$defaultOptions,
+	{preventDefault: true});
+var _elm_lang$html$Html_Events$onSubmit = function (msg) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'submit',
+		_elm_lang$html$Html_Events$onSubmitOptions,
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onCheck = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
+};
+var _elm_lang$html$Html_Events$onInput = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
+};
+var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseover',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseleave',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseenter',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseup',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousedown',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'dblclick',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$Options = F2(
+	function (a, b) {
+		return {stopPropagation: a, preventDefault: b};
+	});
+
 var _elm_lang$http$Native_Http = function() {
 
 
@@ -8914,6 +9029,27 @@ var _elm_lang$http$Http$StringPart = F2(
 	});
 var _elm_lang$http$Http$stringPart = _elm_lang$http$Http$StringPart;
 
+var _user$project$App$jwtDecoder = A2(_elm_lang$core$Json_Decode$field, 'jwt', _elm_lang$core$Json_Decode$string);
+var _user$project$App$encodeLogin = function (login) {
+	return _elm_lang$core$Json_Encode$object(
+		{
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'username',
+				_1: _elm_lang$core$Json_Encode$string(login.username)
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'password',
+					_1: _elm_lang$core$Json_Encode$string(login.password)
+				},
+				_1: {ctor: '[]'}
+			}
+		});
+};
 var _user$project$App$getUrl = function (str) {
 	return A2(_elm_lang$core$Basics_ops['++'], 'http://localhost:4000/api/', str);
 };
@@ -8987,30 +9123,253 @@ var _user$project$App$loggedInBox = function (user) {
 				{
 					ctor: '::',
 					_0: _elm_lang$html$Html$text(
-						A2(_elm_lang$core$Basics_ops['++'], 'logged in as ', user.realname)),
+						A2(_elm_lang$core$Basics_ops['++'], 'logged in as ', user)),
 					_1: {ctor: '[]'}
 				}),
 			_1: {ctor: '[]'}
 		});
 };
+var _user$project$App$Model = F5(
+	function (a, b, c, d, e) {
+		return {links: a, user: b, alert: c, login: d, token: e};
+	});
+var _user$project$App$User = F4(
+	function (a, b, c, d) {
+		return {email: a, realname: b, id: c, username: d};
+	});
+var _user$project$App$Link = F4(
+	function (a, b, c, d) {
+		return {id: a, url: b, created: c, blurb: d};
+	});
+var _user$project$App$linkDecoder = A5(
+	_elm_lang$core$Json_Decode$map4,
+	_user$project$App$Link,
+	A2(_elm_lang$core$Json_Decode$field, 'id', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'url', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'inserted_at', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'blurb', _elm_lang$core$Json_Decode$string));
+var _user$project$App$Login = F2(
+	function (a, b) {
+		return {username: a, password: b};
+	});
+var _user$project$App$initialModel = A5(
+	_user$project$App$Model,
+	{ctor: '[]'},
+	_elm_lang$core$Maybe$Nothing,
+	_elm_lang$core$Maybe$Nothing,
+	A2(_user$project$App$Login, '', ''),
+	_elm_lang$core$Maybe$Nothing);
+var _user$project$App$PassChange = function (a) {
+	return {ctor: 'PassChange', _0: a};
+};
+var _user$project$App$UsernameChange = function (a) {
+	return {ctor: 'UsernameChange', _0: a};
+};
+var _user$project$App$LoggedIn = function (a) {
+	return {ctor: 'LoggedIn', _0: a};
+};
+var _user$project$App$doLogin = function (login) {
+	var body = _elm_lang$http$Http$jsonBody(
+		_user$project$App$encodeLogin(login));
+	var url = _user$project$App$getUrl('session/');
+	var request = A3(_elm_lang$http$Http$post, url, body, _user$project$App$jwtDecoder);
+	return A2(_elm_lang$http$Http$send, _user$project$App$LoggedIn, request);
+};
+var _user$project$App$update = F2(
+	function (msg, model) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
+			case 'PassChange':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							login: A2(_user$project$App$Login, model.login.username, _p1._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'UsernameChange':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							login: A2(_user$project$App$Login, _p1._0, model.login.password)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'GotLinks':
+				if (_p1._0.ctor === 'Ok') {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{links: _p1._0._0, alert: _elm_lang$core$Maybe$Nothing}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								alert: _elm_lang$core$Maybe$Just(
+									_elm_lang$core$Basics$toString(_p1._0._0))
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
+			case 'DoLogin':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: _user$project$App$doLogin(model.login)
+				};
+			default:
+				if (_p1._0.ctor === 'Ok') {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								token: _elm_lang$core$Maybe$Just(_p1._0._0),
+								login: A2(_user$project$App$Login, '', '')
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								alert: _elm_lang$core$Maybe$Just(
+									_elm_lang$core$Basics$toString(_p1._0._0)),
+								login: A2(_user$project$App$Login, '', '')
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
+		}
+	});
+var _user$project$App$DoLogin = {ctor: 'DoLogin'};
 var _user$project$App$loginBox = A2(
-	_elm_lang$html$Html$div,
+	_elm_lang$html$Html$form,
 	{
 		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('box'),
-		_1: {ctor: '[]'}
+		_0: _elm_lang$html$Html_Events$onSubmit(_user$project$App$DoLogin),
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$id('login-form'),
+			_1: {ctor: '[]'}
+		}
 	},
 	{
 		ctor: '::',
-		_0: _elm_lang$html$Html$text('you should login'),
-		_1: {ctor: '[]'}
+		_0: A2(
+			_elm_lang$html$Html$p,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('Login'),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$label,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$for('username-field'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('username: '),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$input,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onInput(_user$project$App$UsernameChange),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$id('username-field'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$placeholder('username'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$type_('text'),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$label,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$for('password'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('password: '),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$input,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onInput(_user$project$App$PassChange),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$id('password-field'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$placeholder('password'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$type_('password'),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('login'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
 	});
 var _user$project$App$viewLoginBox = function (model) {
-	var _p1 = model.user;
-	if (_p1.ctor === 'Nothing') {
+	var _p2 = model.token;
+	if (_p2.ctor === 'Nothing') {
 		return _user$project$App$loginBox;
 	} else {
-		return _user$project$App$loggedInBox(_p1._0);
+		return _user$project$App$loggedInBox(_p2._0);
 	}
 };
 var _user$project$App$view = function (model) {
@@ -9035,64 +9394,12 @@ var _user$project$App$view = function (model) {
 			}
 		});
 };
-var _user$project$App$update = F2(
-	function (msg, model) {
-		var _p2 = msg;
-		if (_p2.ctor === 'NewLinks') {
-			if (_p2._0.ctor === 'Ok') {
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{links: _p2._0._0, alert: _elm_lang$core$Maybe$Nothing}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			} else {
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							alert: _elm_lang$core$Maybe$Just(
-								_elm_lang$core$Basics$toString(_p2._0._0))
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			}
-		} else {
-			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
-var _user$project$App$Model = F3(
-	function (a, b, c) {
-		return {links: a, user: b, alert: c};
-	});
-var _user$project$App$initialModel = A3(
-	_user$project$App$Model,
-	{ctor: '[]'},
-	_elm_lang$core$Maybe$Nothing,
-	_elm_lang$core$Maybe$Nothing);
-var _user$project$App$User = F4(
-	function (a, b, c, d) {
-		return {email: a, realname: b, id: c, username: d};
-	});
-var _user$project$App$Link = F4(
-	function (a, b, c, d) {
-		return {id: a, url: b, created: c, blurb: d};
-	});
-var _user$project$App$linkDecoder = A5(
-	_elm_lang$core$Json_Decode$map4,
-	_user$project$App$Link,
-	A2(_elm_lang$core$Json_Decode$field, 'id', _elm_lang$core$Json_Decode$int),
-	A2(_elm_lang$core$Json_Decode$field, 'url', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode$field, 'inserted_at', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode$field, 'blurb', _elm_lang$core$Json_Decode$string));
-var _user$project$App$NewLinks = function (a) {
-	return {ctor: 'NewLinks', _0: a};
+var _user$project$App$GotLinks = function (a) {
+	return {ctor: 'GotLinks', _0: a};
 };
 var _user$project$App$getLinks = A2(
 	_elm_lang$http$Http$send,
-	_user$project$App$NewLinks,
+	_user$project$App$GotLinks,
 	A2(
 		_elm_lang$http$Http$get,
 		_user$project$App$getUrl('links/'),
@@ -9111,12 +9418,6 @@ var _user$project$App$main = _elm_lang$html$Html$program(
 		update: _user$project$App$update,
 		subscriptions: _elm_lang$core$Basics$always(_elm_lang$core$Platform_Sub$none)
 	})();
-var _user$project$App$UserCreated = {ctor: 'UserCreated'};
-var _user$project$App$MkUser = {ctor: 'MkUser'};
-var _user$project$App$LinkCreated = {ctor: 'LinkCreated'};
-var _user$project$App$MkLink = {ctor: 'MkLink'};
-var _user$project$App$Logout = {ctor: 'Logout'};
-var _user$project$App$Login = {ctor: 'Login'};
 
 var Elm = {};
 Elm['App'] = Elm['App'] || {};

@@ -19,6 +19,10 @@ defmodule Fnark.User do
     from a in __MODULE__,
     where: a.email == ^email
   end
+  def find_by_username(username) do
+    from a in __MODULE__,
+    where: a.username == ^username
+  end
 
   @doc """
   Builds a changeset based on the `struct` and `params`.

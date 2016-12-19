@@ -23,4 +23,5 @@ erl_crash.dump
 # variables.
 *.swp
 /config/prod.secret.exs
-web/static/vendor/fnark.js
+web/static/vendor/app.js
+web/elm/elm.js

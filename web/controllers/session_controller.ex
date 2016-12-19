@@ -3,8 +3,19 @@ defmodule Fnark.SessionController do
 
   alias Fnark.Auth
 
-  def create(conn, %{"user" => %{"email" => email, "password"=>password}}) do
-      case Auth.verify(email, password) do
+  def create(conn, %{"email" => email, "password"=>password}) do
+      case Auth.verify_email(email, password) do
+        {:ok, user} ->
+          conn
+          |>sign_in(user)
+          |>render("login.json")
+        {:error, _}->
+          conn
+          |>put_status(:unprocessable_entity)
+      end
+  end
+  def create(conn, %{"username" => username, "password"=>password}) do
+      case Auth.verify_username(username, password) do
         {:ok, user} ->
           conn
           |>sign_in(user)
