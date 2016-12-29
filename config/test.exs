@@ -17,3 +17,6 @@ config :fnark, Fnark.Repo,
   database: "fnark_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :guardian, Guardian,
+  secret_key: "d+WQzyF/XDUQ8YWfYGGueDwtxHMPtM6FJgo3LY9BWGT2yWQAzdQ4+iEM9acQ5Vtw"

@@ -22,6 +22,13 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :guardian, Guardian,
+  verify_module: Guardian.JWT,
+  issuer: "Fnark",
+  ttl: {365, :days},
+  verify_issuer: true,
+  serializer: Fnark.GuardianSerializer
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

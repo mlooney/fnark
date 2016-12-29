@@ -3,8 +3,8 @@ defmodule Fnark.UserTest do
 
   alias Fnark.User
 
-  @valid_attrs %{crypted_password: "some content", email: "some content", realname: "some content", username: "some content"}
-  @invalid_attrs %{}
+  @valid_attrs %{password: "some content", email: "some content", realname: "some content", username: "some content"}
+  @invalid_attrs %{username: '', email: '', password: ''}
 
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)
